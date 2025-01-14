@@ -37,7 +37,6 @@ const Dialog = ({
                 firstFocusable?.focus();
             }
         });
-
         const handleEscape = (e: KeyboardEvent): void => {
             if (e.key === 'Escape') {
                 onClose();
