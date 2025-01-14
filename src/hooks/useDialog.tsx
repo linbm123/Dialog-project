@@ -1,13 +1,8 @@
 import {useContext} from "react";
 import {DialogContext} from "../component/DialogContext.tsx";
 
-type DialogContextType = {
-    isOpen: boolean;
-    open: () => void;
-    close: () => void;
-}
 
-export const useDialog = (): DialogContextType => {
+export const useDialog = () => {
     const context = useContext(DialogContext);
     if (!context) {
         throw new Error('useDialog must be used within a DialogProvider');

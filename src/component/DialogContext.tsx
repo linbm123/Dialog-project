@@ -1,13 +1,15 @@
-import {createContext} from "react";
+import {createContext,Ref} from "react";
 
-interface DialogContextType {
+type DialogContextType = {
     isOpen: boolean;
     open: () => void;
     close: () => void;
+    dialogRef: Ref<HTMLDivElement>
 }
 
 export const DialogContext = createContext<DialogContextType>({
     isOpen: false,
     open: () => {},
     close: () => {},
+    dialogRef: null
 });

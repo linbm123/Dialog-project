@@ -5,15 +5,19 @@ const useFocusTrap = (
     isOpen: boolean
 ): void => {
     useEffect(() => {
+        console.log("dialogRef.current",dialogRef.current)
+        console.log("isOpen",isOpen)
+
         if (!isOpen || !dialogRef.current) return;
 
         const dialog = dialogRef.current;
+        console.log("dialog",dialog);
         const focusableElements = dialog.querySelectorAll<HTMLElement>(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
         const firstFocusableElement = focusableElements[0];
         const lastFocusableElement = focusableElements[focusableElements.length - 1];
-
+        
         const handleTabKey = (e: KeyboardEvent): void => {
             if (e.key !== 'Tab') return;
 
@@ -33,8 +37,8 @@ const useFocusTrap = (
             handleTabKey(e);
         };
 
-        dialog.addEventListener('keydown', handleKeyDown as unknown as EventListener);
-        return () => dialog.removeEventListener('keydown', handleKeyDown as unknown as EventListener);
+        dialog.addEventListener('keydown', handleKeyDown  as EventListener);
+        return () => dialog.removeEventListener('keydown', handleKeyDown as EventListener);
     }, [isOpen, dialogRef]);
 };
 export default useFocusTrap;

@@ -12,7 +12,6 @@ function MyContent({ title }: MyContentProps): JSX.Element {
     return (
         <>
             <button onClick={open}>Open Dialog</button>
-
             <Dialog
                 isOpen={isOpen}
                 onClose={close}

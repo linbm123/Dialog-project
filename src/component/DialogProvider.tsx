@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef, useState} from "react";
+import {ReactNode, useRef, useState} from "react";
 import {DialogContext} from "./DialogContext";
 
 type DialogProviderProps = {
@@ -7,22 +7,19 @@ type DialogProviderProps = {
 
 export const DialogProvider: React.FC<DialogProviderProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const contentRef = useRef<HTMLDivElement>(null);
+    const dialogRef = useRef<HTMLDivElement>(null);
 
     const open = (): void => setIsOpen(true);
     const close = (): void => setIsOpen(false);
 
-    useEffect(() => {
-        if (contentRef.current) {
-            contentRef.current.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
-        }
-    }, [isOpen]);
-
     return (
-        <DialogContext.Provider value={{ isOpen, open, close }}>
-            <div ref={contentRef}>
+        <DialogContext.Provider value={{ isOpen, open, close,dialogRef }}>
+            <div aria-hidden={isOpen}>
                 {children}
             </div>
+            <div ref={dialogRef}/>
+
+            
         </DialogContext.Provider>
     );
 };
