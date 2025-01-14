@@ -42,7 +42,6 @@ const Dialog = ({
                 onClose();
             }
         };
-
         document.addEventListener('keydown', handleEscape as unknown as EventListener);
 
         return () => {
