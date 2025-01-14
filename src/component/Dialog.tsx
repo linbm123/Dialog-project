@@ -27,7 +27,6 @@ const Dialog = ({
     useEffect(() => {
         if (!isOpen) return;
 
-        // Use requestAnimationFrame to ensure DOM is ready
         const focusTimer = requestAnimationFrame(() => {
             if (initialFocusRef?.current) {
                 initialFocusRef.current.focus();
