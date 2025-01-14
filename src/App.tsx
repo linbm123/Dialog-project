@@ -6,7 +6,7 @@ import MyContent from "./component/MyContent.tsx";
 function App() {
     return (
         <DialogProvider>
-            <MyContent title={'dialog project'} />
+            <MyContent/>
         </DialogProvider>
     );
 }
