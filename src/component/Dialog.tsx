@@ -92,6 +92,6 @@ const Dialog = ({
     </>
   );
 
-  return createPortal(dialog, dialogMangment.dialogRef.current);
+  return createPortal(dialog, dialogMangment?.dialogRef.current);
 };
 export default Dialog;
