@@ -12,19 +12,17 @@ const useFocusHistory = (
         previousFocusRef.current = document.activeElement;
       }
 
-      requestAnimationFrame(() => {
-        if (dialogRef.current) {
-          const firstFocusable = dialogRef.current.querySelector<HTMLElement>(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
+      if (dialogRef.current) {
+        const firstFocusable = dialogRef.current.querySelector<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
 
-          if (firstFocusable) {
-            firstFocusable.focus();
-          } else {
-            dialogRef.current.focus();
-          }
+        if (firstFocusable) {
+          firstFocusable.focus();
+        } else {
+          dialogRef.current.focus();
         }
-      });
+      }
     } else if (previousFocusRef.current) {
       previousFocusRef.current.focus();
     }
