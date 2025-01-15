@@ -12,7 +12,6 @@ type DialogProps = {
   initialFocusRef?: RefObject<HTMLElement>;
   customClasses?: string;
 };
-
 const Dialog = ({
   isOpen,
   onClose,
