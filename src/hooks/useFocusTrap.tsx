@@ -5,16 +5,13 @@ const useFocusTrap = (
     isOpen: boolean
 ): void => {
     useEffect(() => {
-        console.log("dialogRef.current",dialogRef.current)
-        console.log("isOpen",isOpen)
-
         if (!isOpen || !dialogRef.current) return;
 
         const dialog = dialogRef.current;
-        console.log("dialog",dialog);
         const focusableElements = dialog.querySelectorAll<HTMLElement>(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
+        
         const firstFocusableElement = focusableElements[0];
         const lastFocusableElement = focusableElements[focusableElements.length - 1];
         

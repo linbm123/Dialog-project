@@ -1,15 +1,15 @@
-import {createContext,Ref} from "react";
+import {createContext, RefObject} from "react";
 
 type DialogContextType = {
     isOpen: boolean;
     open: () => void;
     close: () => void;
-    dialogRef: Ref<HTMLDivElement>
+    dialogRef: RefObject<HTMLDivElement>;
 }
 
 export const DialogContext = createContext<DialogContextType>({
-    isOpen: false,
-    open: () => {},
-    close: () => {},
-    dialogRef: null
+  isOpen: false,
+  open: () => {},
+  close: () => {},
+  dialogRef: { current: null },
 });

@@ -1,29 +1,33 @@
-import {useRef} from "react";
-import useDialog from "../hooks/useDialog.tsx";
-import Dialog from "./Dialog.tsx";
+// MyContent.tsx
+import { ReactNode, useContext } from "react";
+import Dialog from "./Dialog";
+import { DialogContext } from "./DialogContext";
 
-function MyContent(): JSX.Element {
-    const { isOpen, open, close } = useDialog();
-    const initialFocusRef = useRef<HTMLButtonElement>(null);
+type MyContentProps = {
+  children: ReactNode;
+};
 
-    return (
-        <>
-            <button onClick={open}>Open Dialog</button>
-            <Dialog
-                isOpen={isOpen}
-                onClose={close}
-                contentId="dialog-content"
-                isModal={true}
-                initialFocusRef={initialFocusRef}
-            >
-                <div id="dialog-content">
-                    <button ref={initialFocusRef}>Focus me first</button>
-                    <button>Another button</button>
-                    <button onClick={close}>Close</button>
-                </div>
-            </Dialog>
-        </>
-    );
+function MyContent({ children }: MyContentProps): JSX.Element {
+  const { isOpen, open, close } = useContext(DialogContext);
+
+  return (
+    <>
+      <button onClick={open}>Open Dialog</button>
+      <Dialog
+        isOpen={isOpen}
+        onClose={close}
+        contentId="dialog-content"
+        isModal={true}
+      >
+        {({ close }) => (
+          <div>
+            <div>{children}</div>
+            <button onClick={close}>Close</button>
+          </div>
+        )}
+      </Dialog>
+    </>
+  );
 }
 
 export default MyContent;

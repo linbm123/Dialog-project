@@ -6,7 +6,7 @@ import useFocusHistory from "../hooks/useFocusHistory.tsx";
 type DialogProps = {
   isOpen: boolean;
   onClose: () => void;
-  children: ReactNode;
+  children: (props: { close: () => void }) => ReactNode;
   contentId: string;
   isModal?: boolean;
   initialFocusRef?: RefObject<HTMLElement>;
@@ -23,8 +23,9 @@ const Dialog = ({
 }: DialogProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const dialogMangment = useContext(DialogContext);
+  
   useFocusTrap(dialogRef, isOpen);
-  useFocusHistory(isOpen);
+  useFocusHistory(isOpen, dialogRef);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -61,12 +62,6 @@ const Dialog = ({
     <>
       <div
         onClick={onClose}
-        // className={cn(
-        //     "inset-0 bg-black/50", // Added opacity with /50
-        //     isModal ? 'fixed' : 'absolute',
-        //     "z-50", // Ensure it's above other content
-        //     customClasses
-        // )}
         style={{
           position: isModal ? "fixed" : "absolute",
           top: 0,
@@ -87,11 +82,11 @@ const Dialog = ({
           position: isModal ? "fixed" : "absolute",
         }}
       >
-        {children}
+        {children({ close: onClose })}                    
       </dialog>
     </>
   );
 
-  return createPortal(dialog, dialogMangment?.dialogRef.current);
+  return createPortal(dialog, dialogMangment?.dialogRef?.current || document.body);
 };
 export default Dialog;
