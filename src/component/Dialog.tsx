@@ -44,7 +44,6 @@ const Dialog = ({
       );
       firstFocusable?.focus();
     }
-
     document.addEventListener(
       "keydown",
       handleEscape as unknown as EventListener
