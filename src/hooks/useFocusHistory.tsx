@@ -12,7 +12,6 @@ const useFocusHistory = (
         previousFocusRef.current = document.activeElement;
       }
 
-      // Focus the dialog element or the first focusable child
       requestAnimationFrame(() => {
         if (dialogRef.current) {
           const firstFocusable = dialogRef.current.querySelector<HTMLElement>(

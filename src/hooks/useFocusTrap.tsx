@@ -34,8 +34,8 @@ const useFocusTrap = (
             handleTabKey(e);
         };
 
-        dialog.addEventListener('keydown', handleKeyDown  as EventListener);
-        return () => dialog.removeEventListener('keydown', handleKeyDown as EventListener);
+        dialog.addEventListener('keydown', handleKeyDown);
+        return () => dialog.removeEventListener('keydown', handleKeyDown);
     }, [isOpen, dialogRef]);
 };
 export default useFocusTrap;
