@@ -12,7 +12,9 @@ function MyContent({ children }: MyContentProps): JSX.Element {
 
   return (
     <>
-      <button onClick={open}>Open Dialog</button>
+      <div id="sectionContent">
+       <button onClick={open}>Open Dialog</button>
+      </div>
       <Dialog
         isOpen={isOpen}
         onClose={close}

@@ -1,39 +1,46 @@
-A dialog is a popup-like element, that opens as an interstatial overlay above the UI, usually in response to user interaction. A modal is dialog that blocks the entire application UI, and prevents interaction with any content outside the modal itself.
+# Accessible Dialog Component in React
 
-Regular dialogs will mostly use position: absolute; , while modals will often be assigned position: fixed;.
+## Overview
+This project involves building a reusable Dialog component in React that ensures accessibility while leaving design and UI choices up to the component's consumer. The component addresses various concerns such as focus management, accessibility, and user interaction (e.g., opening, closing, focus trapping, overlay behavior). The implementation ensures that the dialog behaves like a modal, but without enforcing any particular design.
 
-To create such an element, several concerns need to be addressed, including accessibility.
+## Key Features
 
-The dialog or its wrapper should be a sibling of the content it covers in the DOM.
+### Accessibility Compliance:
+- Uses the `<dialog>` element or `role="dialog"` for accessibility.
+- **Focus management**: When the dialog opens, focus is set to the first interactive element inside the dialog.
+- Tab-cycled focus should be trapped inside the dialog (cycling through interactive elements using Tab and Shift+Tab).
+- `aria-hidden="true"` is applied to the content behind the dialog to prevent assistive technology from reading it.
+- When the dialog closes, focus is returned to the element that was focused before the dialog opened.
 
-The content beneath the dialog should be visually obscured by an overlay even if the dialog itself covers only part of the area.
+### User Interaction:
+The dialog should close when:
+1. The user clicks outside the dialog (on the overlay).
+2. The user presses the Esc key.
+3. The user clicks the "close" button.
 
-The dialog should use a <dialog> element, or, alternatively, hav a role of dialog.
+### React Implementation:
+- Built using React hooks and render props.
+- React's Portal feature is used to render the dialog outside of the parent component’s DOM hierarchy, allowing the dialog to overlay on top of the UI.
 
-<section>
-  <div id="sectionContent">
-   <!-- content -->
-  </div>
-  <dialog>
-   <!-- dialog content -->
-   </dialog>
-</section>
-On opening the dialog, the DOM element wrapping the content (the div with the sectionConent id in the example above) should be assigned an aria-hidden="true" attribute, to prevent assisitive tech, namely screen readers, from interacting with it.
+## Requirements
 
-EXTRA: This is the legacy way to do this, but for modals, there's an easier, more modern way to do this with ARIA 1.1. It has less browser suppport, but if you feel like it, you can implement it like that.
+### Focus Management:
+- When the dialog opens, focus should be given to the first interactive element within the dialog.
+- Focus should be trapped within the dialog (cycling through interactive elements using Tab and Shift+Tab).
+- On closing the dialog, the focus should return to the element that was focused before the dialog opened.
 
-On opening the dialog, focus should be set to the first interactive element
+### Interaction Management:
+- The dialog should close when:
+  1. The user clicks outside the dialog (on the overlay).
+  2. The user presses the Esc key.
+  3. The user clicks the "close" button.
 
-The tab-cycled focus should be trapped inside dialog
+### Accessibility:
+- The dialog should use the `<dialog>` element or `role="dialog"`.
+- When the dialog is open, the content behind the dialog should be visually obscured by an overlay.
+- When the dialog is open, the element wrapping the content (e.g., the `div` with `sectionContent` id) should be assigned `aria-hidden="true"`, and removed when the dialog closes.
 
-Any click outside the dialog (on the overlay) should close the dialog
-
-Hitting the Esc key should close the dialog.
-
-On closing the dialog, the aria-hidden attribute should be removed from the DOM element wrapping the content.
-
-On closing the dialog, focus should be restored to the element which was focused before the dialog was opened.
-
-Using React hooks or the render-prop pattern and whichever technical stack you'd like, build a reusable React component that handles the above concerns, while leaving design choices completely in the hands of the component's consumer. The component should only concern itself with providing acceibilty and behaviour primitives for the consumer to hook into, and have absolutely no opinion on how the UI will look like.
-
-Please make sure to avoid direct interaction with the DOM. Hint: React's Portal feature can come in handy when reparenting the dialog.
+## Installation
+1. Clone the repository: `git clone https://github.com/linbm123/Dialog-project.git`.
+2. Install dependencies: `npm install`.
+3. Start the development server: `npm run start`.
