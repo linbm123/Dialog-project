@@ -46,12 +46,12 @@ const Dialog = ({
     }
     document.addEventListener(
       "keydown",
-      handleEscape as unknown as EventListener
+      handleEscape
     );
     return () =>
       document.removeEventListener(
         "keydown",
-        handleEscape as unknown as EventListener
+        handleEscape
       );
   }, [isOpen, onClose, initialFocusRef]);
 
