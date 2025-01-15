@@ -28,5 +28,4 @@ function App() {
     </DialogProvider>
   );
 }
-
 export default App;

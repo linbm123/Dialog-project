@@ -8,7 +8,6 @@ const useFocusHistory = (
 
   useEffect(() => {
     if (isOpen) {
-      // Save the previously focused element before opening the dialog
       if (document.activeElement instanceof HTMLElement) {
         previousFocusRef.current = document.activeElement;
       }
@@ -23,12 +22,11 @@ const useFocusHistory = (
           if (firstFocusable) {
             firstFocusable.focus();
           } else {
-            dialogRef.current.focus(); // Fallback to the dialog element
+            dialogRef.current.focus();
           }
         }
       });
     } else if (previousFocusRef.current) {
-      // Restore focus to the previously focused element when the dialog closes
       previousFocusRef.current.focus();
     }
   }, [isOpen, dialogRef]);
