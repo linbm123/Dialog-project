@@ -1,6 +1,58 @@
 button:focus {
-    outline: none; 
-    border: 2px solid purple;
-    box-shadow: 0 0 5px purple; 
-  }
-  
+  outline: none; 
+  border: 2px solid purple;
+  box-shadow: 0 0 5px purple; 
+}
+
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.open-dialog-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.open-dialog-button:hover {
+  background-color: #0056b3;
+}
+
+.custom-dialog {
+  width: 400px;
+  padding: 20px;
+  border-color: #007bff;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.close-dialog-button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: lightblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-dialog-button:hover {
+  background-color: darkblue;
+}
+
+.custom-backdrop::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

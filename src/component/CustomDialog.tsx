@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { ReactNode } from "react";
 import Dialog from "./Dialog";
 import DialogProvider from "./DialogProvider";
 
@@ -6,16 +6,16 @@ type CustomDialogProps = {
   children: ReactNode;
   isOpen: boolean;
   handleClose: () => void;
-  style?: CSSProperties;
-  backdropStyle?: CSSProperties;
+  className?: string;
+  backdropClassName?: string;
 };
 
 function CustomDialog({
   children,
   isOpen,
   handleClose,
-  style,
-  backdropStyle,
+  className = "",
+  backdropClassName = "",
 }: CustomDialogProps): JSX.Element {
   return (
     <DialogProvider>
@@ -24,8 +24,8 @@ function CustomDialog({
         onClose={handleClose}
         contentId="dialog-content"
         isModal={true}
-        style={style}
-        backdropStyle={backdropStyle}
+        className={className}
+        backdropClassName={backdropClassName}
       >
         {children}
       </Dialog>

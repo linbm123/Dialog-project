@@ -40,6 +40,34 @@ The dialog should close when:
 - When the dialog is open, the content behind the dialog should be visually obscured by an overlay.
 - When the dialog is open, the element wrapping the content (e.g., the `div` with `sectionContent` id) should be assigned `aria-hidden="true"`, and removed when the dialog closes.
 
+---
+
+## Props
+
+### `handleClose` (required)
+- **Type**: `function`
+- **Description**: This callback function is triggered when the dialog is closed. It’s typically used to update the state (e.g., setting `isOpen` to `false`).
+- **Usage**: Use `handleClose` to close the dialog when the user interacts with it (e.g., clicking the close button or pressing Esc).
+
+### `isOpen` (required)
+- **Type**: `boolean`
+- **Description**: This boolean prop controls the visibility of the dialog. If `isOpen` is `true`, the dialog is displayed; if `false`, the dialog is hidden.
+- **Usage**: Use this prop to manage the state of the dialog (open or close it based on the value of `isOpen`).
+
+### `className` (optional)
+- **Type**: `string`
+- **Default**: `""` (no styles applied by default)
+- **Description**: A custom CSS class for styling the dialog box itself. Use this to control the dialog's appearance (e.g., size, background color, padding, border, etc.).
+- **Usage**: Pass a custom class name to style the dialog content.
+
+### `backdropClassName` (optional)
+- **Type**: `string`
+- **Default**: `""` (no styles applied by default)
+- **Description**: A custom CSS class for styling the backdrop (the semi-transparent overlay behind the dialog). Use this to control the backdrop's appearance (e.g., color, opacity, blur).
+- **Usage**: Pass a custom class name to style the backdrop overlay.
+
+---
+
 ## Installation
 1. Clone the repository: `git clone https://github.com/linbm123/Dialog-project.git`.
 2. Install dependencies: `npm install`.
